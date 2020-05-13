@@ -10,15 +10,30 @@ function showCursor() {
     process.stderr.write('\x1b[?25h') // Show terminal cursor
 }
 
-// Print string in 8-bit color
-// Refer to the 256-color lookup table at
+// Print string in 8-bit color or 24-bit color
+// Colors can be specified using:
+//   - a Number (8-bit color; e.g. 6 for cyan) or
+//   - a String (24-bit RGB color; e.g. '255,147,182' for pink).
+// For 8-bit color, refer to the lookup table at
 // https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
 function paint(str, color) {
-    if (color >= 0 && color <= 255) {
-        process.stdout.write(`\x1b[38;5;${color}m${str}\x1b[0m`)
-    }
-    else {
-        process.stdout.write(str)
+    switch (typeof color) {
+        case 'number':
+            process.stdout.write(`\x1b[38;5;${color}m${str}\x1b[0m`)
+            break
+        case 'string':
+            const match = color.match(/^(\d{1,3}),(\d{1,3}),(\d{1,3})$/)
+            if (match) {
+                const [, r, g, b] = match
+                process.stdout.write(`\x1b[38;2;${r};${g};${b}m${str}\x1b[0m`)
+            }
+            else {
+                process.stdout.write(str)
+            }
+            break
+        default:
+            process.stdout.write(str)
+            break
     }
 }
 

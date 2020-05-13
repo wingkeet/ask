@@ -20,7 +20,10 @@ async function main() {
     console.log(choices[answer])
 
     // Example 2 with all options specified.
-    // Refer to the 256-color lookup table at
+    // Colors can be specified using:
+    //   - a Number (8-bit color; e.g. { color: 6 } for cyan) or
+    //   - a String (24-bit RGB color; e.g. { color: '255,147,182' } for pink).
+    // For 8-bit color, refer to the lookup table at
     // https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
     choices = [
         'Ace Combat 7: Skies Unknown',
@@ -37,7 +40,7 @@ async function main() {
         'XCOM: Chimera Squad'
     ]
     console.log(`Which game do you want to play today? (${choices.length})`)
-    answer = await ask(choices, { color: 77, maxWindow: 5, pointer: '💀' })
+    answer = await ask(choices, { color: '255,147,182', maxWindow: 5, pointer: '😀' })
     console.log(choices[answer])
 
     console.log('end')
