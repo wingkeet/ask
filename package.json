@@ -1,0 +1,14 @@
+{
+  "name": "ask",
+  "version": "1.0.0",
+  "description": "Simple Node.js library to display choices and ask for selection",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "wingkeet",
+  "license": "MIT",
+  "dependencies": {}
+}
