@@ -10,17 +10,22 @@ function showCursor() {
     process.stderr.write('\x1b[?25h') // Show terminal cursor
 }
 
-// https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
-// Print string in 8-bit color where the default is 6 (cyan)
-// See https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit for the 256-color lookup table
-function paint(str, color = 6) {
-    process.stdout.write(`\x1b[38;5;${color}m${str}\x1b[0m`)
+// Print string in 8-bit color
+// Refer to the 256-color lookup table from
+// https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
+function paint(str, color) {
+    if (color >= 0 && color <= 255) {
+        process.stdout.write(`\x1b[38;5;${color}m${str}\x1b[0m`)
+    }
+    else {
+        process.stdout.write(str)
+    }
 }
 
 function ask(choices, options) {
     return new Promise((resolve, reject) => {
         // Set default options
-        const { color = 6, maxWindow = 10, pointer = '>' } = options || {}
+        const { color, maxWindow = 10, pointer = '>' } = options || {}
 
         hideCursor()
         readline.emitKeypressEvents(process.stdin)

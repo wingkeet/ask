@@ -20,7 +20,7 @@ async function main() {
     console.log(choices[answer])
 
     // Example 2 with all options specified.
-    // Obtain the 256-color lookup table from
+    // Refer to the 256-color lookup table from
     // https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
     choices = [
         'Ace Combat 7: Skies Unknown',
