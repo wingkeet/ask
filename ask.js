@@ -11,7 +11,7 @@ function showCursor() {
 }
 
 // Print string in 8-bit color
-// Refer to the 256-color lookup table from
+// Refer to the 256-color lookup table at
 // https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
 function paint(str, color) {
     if (color >= 0 && color <= 255) {
@@ -38,7 +38,7 @@ function ask(choices, options) {
         let top = 0
         let sel = 0 // current selection relative to top
 
-        // Print choices to the screen
+        // Display list of choices
         const showChoices = () => {
             readline.clearScreenDown(process.stdout)
             const spaces = ' '.repeat(pointer.length + 1)
@@ -52,7 +52,7 @@ function ask(choices, options) {
         }
 
         // Callback function to handle key presses
-        const onKeyPress = (str, key) => {
+        const keyPressCallback = (str, key) => {
             if (key.ctrl && key.name === 'c') {
                 readline.clearScreenDown(process.stdout)
                 showCursor()
@@ -86,7 +86,7 @@ function ask(choices, options) {
                 case 'return':
                 case 'q':
                     readline.clearScreenDown(process.stdout)
-                    process.stdin.off('keypress', onKeyPress)
+                    process.stdin.off('keypress', keyPressCallback)
                     if (process.stdin.isTTY) {
                         process.stdin.setRawMode(false)
                     }
@@ -98,7 +98,7 @@ function ask(choices, options) {
             }
         }
 
-        process.stdin.on('keypress', onKeyPress)
+        process.stdin.on('keypress', keyPressCallback)
         showChoices()
     })
 }
