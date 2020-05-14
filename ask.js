@@ -16,10 +16,24 @@ function parseColor(color) {
     if (typeof color === 'number') return color
     if (typeof color !== 'string') return undefined
 
-    const match = color.match(/^(\d{1,3}),(\d{1,3}),(\d{1,3})$/)
-    if (!match) return undefined
-    const [, r, g, b] = match
-    return {r, g, b}
+    let match
+
+    match = color.match(/^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/)
+    if (match) {
+        const [r, g, b] = match.slice(1, 4).map(str => Number(str))
+        return {r, g, b}
+    }
+    match = color.match(/^#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})$/i)
+    if (match) {
+        const [r, g, b] = match.slice(1, 4).map(str => parseInt(str, 16))
+        return {r, g, b}
+    }
+    match = color.match(/^#([a-f0-9])([a-f0-9])([a-f0-9])$/i)
+    if (match) {
+        const [r, g, b] = match.slice(1, 4).map(str => parseInt(str + str, 16))
+        return {r, g, b}
+    }
+    return undefined
 }
 
 // Print string in 8-bit color or 24-bit color
