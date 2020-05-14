@@ -11,9 +11,11 @@ function showCursor() {
 }
 
 // Parse color string and return RGB triplet
-// Return 'undefined' if there is any error
+// If there is any error, return 'undefined' 
 function parseColor(color) {
+    if (typeof color === 'number') return color
     if (typeof color !== 'string') return undefined
+
     const match = color.match(/^(\d{1,3}),(\d{1,3}),(\d{1,3})$/)
     if (!match) return undefined
     const [, r, g, b] = match
@@ -39,8 +41,8 @@ function print(str, color) {
 function ask(choices, options) {
     return new Promise((resolve, reject) => {
         // Set default options
-        let { color, maxWindow = 10, pointer = '>' } = options || {}
-        if (typeof color !== 'number') color = parseColor(color)
+        const { color: colorTemp, maxWindow = 10, pointer = '>' } = options || {}
+        const color = parseColor(colorTemp)
 
         hideCursor()
         readline.emitKeypressEvents(process.stdin)
