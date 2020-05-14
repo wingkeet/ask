@@ -10,26 +10,25 @@ function showCursor() {
     process.stderr.write('\x1b[?25h') // Show terminal cursor
 }
 
+// Parse color string and return RGB triplet
+// Return 'undefined' if there is any error
+function parseColor(color) {
+    if (typeof color !== 'string') return undefined
+    const match = color.match(/^(\d{1,3}),(\d{1,3}),(\d{1,3})$/)
+    if (!match) return undefined
+    const [, r, g, b] = match
+    return {r, g, b}
+}
+
 // Print string in 8-bit color or 24-bit color
-// Colors can be specified using:
-//   - a Number (8-bit color; e.g. 6 for cyan) or
-//   - a String (24-bit RGB color; e.g. '255,147,182' for pink).
-// For 8-bit color, refer to the lookup table at
-// https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
-function paint(str, color) {
+function print(str, color) {
     switch (typeof color) {
-        case 'number':
+        case 'number': // 8-bit color
             process.stdout.write(`\x1b[38;5;${color}m${str}\x1b[0m`)
             break
-        case 'string':
-            const match = color.match(/^(\d{1,3}),(\d{1,3}),(\d{1,3})$/)
-            if (match) {
-                const [, r, g, b] = match
-                process.stdout.write(`\x1b[38;2;${r};${g};${b}m${str}\x1b[0m`)
-            }
-            else {
-                process.stdout.write(str)
-            }
+        case 'object': // 24-bit color
+            const {r, g, b} = color
+            process.stdout.write(`\x1b[38;2;${r};${g};${b}m${str}\x1b[0m`)
             break
         default:
             process.stdout.write(str)
@@ -40,7 +39,8 @@ function paint(str, color) {
 function ask(choices, options) {
     return new Promise((resolve, reject) => {
         // Set default options
-        const { color, maxWindow = 10, pointer = '>' } = options || {}
+        let { color, maxWindow = 10, pointer = '>' } = options || {}
+        if (typeof color !== 'number') color = parseColor(color)
 
         hideCursor()
         readline.emitKeypressEvents(process.stdin)
@@ -50,17 +50,17 @@ function ask(choices, options) {
 
         const rl = readline.createInterface(process.stdin)
         const window = Math.min(maxWindow, choices.length)
-        let top = 0
+        let top = 0 // top of window
         let sel = 0 // current selection relative to top
 
-        // Display list of choices
+        // Display choices
         const showChoices = () => {
             readline.clearScreenDown(process.stdout)
             const spaces = ' '.repeat(pointer.length + 1)
             let str = choices.slice(top, top + window).map(choice => spaces + choice)
             str[sel] = pointer + str[sel].slice(pointer.length)
             str = str.join('\n')
-            paint(str, color)
+            print(str, color)
 
             readline.cursorTo(process.stdout, 0)
             readline.moveCursor(process.stdout, 0, 1 - window)
