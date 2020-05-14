@@ -16,7 +16,7 @@ async function main() {
         'România',
     ]
     console.log(`Where do you come from? (${choices.length})`)
-    answer = await ask(choices)
+    answer = await ask([])
     console.log(choices[answer])
 
     // Example 2 with all options specified.

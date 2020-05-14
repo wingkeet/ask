@@ -54,6 +54,11 @@ function print(str, color) {
 
 function ask(choices, options) {
     return new Promise((resolve, reject) => {
+        if (choices.length === 0) {
+            reject(new Error("'choices' array must not be empty"))
+            return
+        }
+
         // Set default options
         const { color: colorTemp, maxWindow = 10, pointer = '>' } = options || {}
         const color = parseColor(colorTemp)
