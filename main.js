@@ -29,6 +29,7 @@ async function main() {
     //   Examples: - { color: 'CornflowerBlue' }
     //             - { color: '#fe10ca' }, { color: '#d2b' }
     //             - { color: 'rgb(188,0,95)' }
+    // Named-colors and hex-colors are case insensitive.
     // Spaces should not be used within the color values.
     // Invalid color values are silently ignored.
     choices = [

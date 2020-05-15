@@ -3,14 +3,23 @@
 const readline = require('readline')
 const csscolors = require('./css-colors')
 
-function getNamedColors() {
-    // Example: Convert 'F0F8FF' to { 0xF0, 0xF8, 0xFF }
-    function hex6ToRGB(hex6) {
-        const match = hex6.match(/^([A-F0-9]{2})([A-F0-9]{2})([A-F0-9]{2})$/)
-        const [r, g, b] = match.slice(1, 4).map(hex2 => parseInt(hex2, 16))
-        return {r, g, b}
-    }
+// Example: Convert 'F0F8FF' to { 0xF0, 0xF8, 0xFF }
+function hex6ToRGB(hex6) {
+    const match = hex6.match(/^#?([A-F0-9]{2})([A-F0-9]{2})([A-F0-9]{2})$/i)
+    if (!match) return undefined
+    const [r, g, b] = match.slice(1, 4).map(hex2 => parseInt(hex2, 16))
+    return {r, g, b}
+}
 
+// Example: Convert 'A12' to { 0xAA, 0x11, 0x22 }
+function hex3ToRGB(hex3) {
+    const match = hex3.match(/^#?([A-F0-9])([A-F0-9])([A-F0-9])$/i)
+    if (!match) return undefined
+    const [r, g, b] = match.slice(1, 4).map(hex1 => parseInt(hex1 + hex1, 16))
+    return {r, g, b}
+}
+
+function getNamedColors() {
     // https://javascript.info/keys-values-entries#transforming-objects
     return Object.fromEntries(
         Object.entries(csscolors).map(([name, hex6]) => [name, hex6ToRGB(hex6)])
@@ -33,24 +42,21 @@ function parseColor(color) {
     if (typeof color === 'number') return color
     if (typeof color !== 'string') return undefined
 
-    let match
-
-    match = color.match(/^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/)
-    if (match) {
+    if (color.startsWith('rgb')) {
+        const match = color.match(/^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/)
+        if (!match) return undefined
         const [r, g, b] = match.slice(1, 4).map(dec => Number(dec))
         return {r, g, b}
     }
-    match = color.match(/^#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})$/i)
-    if (match) {
-        const [r, g, b] = match.slice(1, 4).map(hex2 => parseInt(hex2, 16))
-        return {r, g, b}
+    else if (color.startsWith('#')) {
+        let rgb
+        if (rgb = hex6ToRGB(color)) return rgb
+        if (rgb = hex3ToRGB(color)) return rgb
+        return undefined
     }
-    match = color.match(/^#([a-f0-9])([a-f0-9])([a-f0-9])$/i)
-    if (match) {
-        const [r, g, b] = match.slice(1, 4).map(hex1 => parseInt(hex1 + hex1, 16))
-        return {r, g, b}
+    else {
+        return CSS_COLORS[color.toLowerCase()]
     }
-    return CSS_COLORS[color.toLowerCase()]
 }
 
 // Print string in 8-bit color or 24-bit color
@@ -92,7 +98,7 @@ function ask(choices, options) {
         let sel = 0 // current selection relative to top
 
         // Display choices
-        const showChoices = () => {
+        function showChoices() {
             readline.clearScreenDown(process.stdout)
             const spaces = ' '.repeat(pointer.length + 1)
             let str = choices.slice(top, top + window).map(choice => spaces + choice)
@@ -105,7 +111,7 @@ function ask(choices, options) {
         }
 
         // Callback function to handle key presses
-        const keyPressCallback = (str, key) => {
+        function keyPressCallback(str, key) {
             if (key.ctrl && key.name === 'c') {
                 readline.clearScreenDown(process.stdout)
                 showCursor()
