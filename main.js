@@ -29,23 +29,26 @@ async function main() {
     //   Examples: - { color: '#fe10ca' }, { color: '#d2b' }
     //             - { color: 'rgb(188,0,95)' }
     // Spaces should not be used within the color values.
-    // Invalid color values will be silently ignored.
+    // Invalid color values are silently ignored.
     choices = [
         'Ace Combat 7: Skies Unknown',
         "Assassin's Creed Odyssey",
-        'Bastion',
+        'BATTLETECH',
         'Borderlands 3',
-        'Call of Duty: Modern Warfare',
+        'Cyberpunk 2077',
         'Devil May Cry 5',
+        "Empire of Sin",
         'Kingdom Hearts',
+        'Mark of the Ninja',
+        'Oxygen Not Included',
         'Rocket League',
         'Sekiro: Shadows Die Twice',
-        'The Witcher 2',
+        'The Witcher 3: Wild Hunt',
         'Wolfenstein: Youngblood',
         'XCOM: Chimera Squad'
     ]
     console.log(`Which game do you want to play today? (${choices.length})`)
-    answer = await ask(choices, { color: 'rgb(188,0,95)', maxWindow: 5, pointer: '😀' })
+    answer = await ask(choices, { color: 'rgb(188,0,95)', maxWindow: 6, pointer: '😀' })
     console.log(choices[answer])
 }
 
