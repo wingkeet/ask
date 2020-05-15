@@ -25,8 +25,9 @@ async function main() {
     //   - a String (24-bit RGB color; see below for details)
     // For 8-bit color, refer to the lookup table at
     //   https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
-    // For 24-bit color, CSS hex-color and rgb() values are supported.
-    //   Examples: - { color: '#fe10ca' }, { color: '#d2b' }
+    // For 24-bit color, CSS named-colors, hex-colors and rgb-colors are supported.
+    //   Examples: - { color: 'CornflowerBlue' }
+    //             - { color: '#fe10ca' }, { color: '#d2b' }
     //             - { color: 'rgb(188,0,95)' }
     // Spaces should not be used within the color values.
     // Invalid color values are silently ignored.
@@ -48,7 +49,7 @@ async function main() {
         'XCOM: Chimera Squad'
     ]
     console.log(`Which game do you want to play today? (${choices.length})`)
-    answer = await ask(choices, { color: 'rgb(188,0,95)', maxWindow: 6, pointer: '😀' })
+    answer = await ask(choices, { color: 'HotPink', maxWindow: 6, pointer: '😀' })
     console.log(choices[answer])
 }
 

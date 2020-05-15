@@ -1,6 +1,23 @@
 'use strict'
 
 const readline = require('readline')
+const csscolors = require('./css-colors')
+
+function getNamedColors() {
+    // Example: Convert 'F0F8FF' to { 0xF0, 0xF8, 0xFF }
+    function hex6ToRGB(hex6) {
+        const match = hex6.match(/^([A-F0-9]{2})([A-F0-9]{2})([A-F0-9]{2})$/)
+        const [r, g, b] = match.slice(1, 4).map(hex2 => parseInt(hex2, 16))
+        return {r, g, b}
+    }
+
+    // https://javascript.info/keys-values-entries#transforming-objects
+    return Object.fromEntries(
+        Object.entries(csscolors).map(([name, hex6]) => [name, hex6ToRGB(hex6)])
+    )
+}
+
+const CSS_COLORS = getNamedColors()
 
 function hideCursor() {
     process.stderr.write('\x1b[?25l') // Hide terminal cursor
@@ -20,20 +37,20 @@ function parseColor(color) {
 
     match = color.match(/^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/)
     if (match) {
-        const [r, g, b] = match.slice(1, 4).map(str => Number(str))
+        const [r, g, b] = match.slice(1, 4).map(dec => Number(dec))
         return {r, g, b}
     }
     match = color.match(/^#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})$/i)
     if (match) {
-        const [r, g, b] = match.slice(1, 4).map(str => parseInt(str, 16))
+        const [r, g, b] = match.slice(1, 4).map(hex2 => parseInt(hex2, 16))
         return {r, g, b}
     }
     match = color.match(/^#([a-f0-9])([a-f0-9])([a-f0-9])$/i)
     if (match) {
-        const [r, g, b] = match.slice(1, 4).map(str => parseInt(str + str, 16))
+        const [r, g, b] = match.slice(1, 4).map(hex1 => parseInt(hex1 + hex1, 16))
         return {r, g, b}
     }
-    return undefined
+    return CSS_COLORS[color.toLowerCase()]
 }
 
 // Print string in 8-bit color or 24-bit color
