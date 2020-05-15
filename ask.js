@@ -4,25 +4,33 @@ const readline = require('readline')
 const csscolors = require('./css-colors')
 
 // Example: Convert 'F0F8FF' to { 0xF0, 0xF8, 0xFF }
-function hex6ToRGB(hex6) {
-    const match = hex6.match(/^#?([A-F0-9]{2})([A-F0-9]{2})([A-F0-9]{2})$/i)
+function hex6ToRGB(color) {
+    const match = color.match(/^#?([A-F0-9]{2})([A-F0-9]{2})([A-F0-9]{2})$/i)
     if (!match) return undefined
-    const [r, g, b] = match.slice(1, 4).map(hex2 => parseInt(hex2, 16))
+    const [r, g, b] = match.slice(1, 4).map(hex => parseInt(hex, 16))
     return {r, g, b}
 }
 
-// Example: Convert 'A12' to { 0xAA, 0x11, 0x22 }
-function hex3ToRGB(hex3) {
-    const match = hex3.match(/^#?([A-F0-9])([A-F0-9])([A-F0-9])$/i)
+// Example: Convert 'F22' to { 0xFF, 0x22, 0x22 }
+function hex3ToRGB(color) {
+    const match = color.match(/^#?([A-F0-9])([A-F0-9])([A-F0-9])$/i)
     if (!match) return undefined
-    const [r, g, b] = match.slice(1, 4).map(hex1 => parseInt(hex1 + hex1, 16))
+    const [r, g, b] = match.slice(1, 4).map(hex => parseInt(hex + hex, 16))
+    return {r, g, b}
+}
+
+// Example: Convert 'rgb(7,80,255)' to { 7, 80, 255 }
+function rgbToRGB(color) {
+    const match = color.match(/^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/)
+    if (!match) return undefined
+    const [r, g, b] = match.slice(1, 4).map(dec => Number(dec))
     return {r, g, b}
 }
 
 function getNamedColors() {
     // https://javascript.info/keys-values-entries#transforming-objects
     return Object.fromEntries(
-        Object.entries(csscolors).map(([name, hex6]) => [name, hex6ToRGB(hex6)])
+        Object.entries(csscolors).map(([name, color]) => [name, hex6ToRGB(color)])
     )
 }
 
@@ -42,21 +50,12 @@ function parseColor(color) {
     if (typeof color === 'number') return color
     if (typeof color !== 'string') return undefined
 
-    if (color.startsWith('rgb')) {
-        const match = color.match(/^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/)
-        if (!match) return undefined
-        const [r, g, b] = match.slice(1, 4).map(dec => Number(dec))
-        return {r, g, b}
-    }
-    else if (color.startsWith('#')) {
-        let rgb
-        if (rgb = hex6ToRGB(color)) return rgb
-        if (rgb = hex3ToRGB(color)) return rgb
-        return undefined
-    }
-    else {
-        return CSS_COLORS[color.toLowerCase()]
-    }
+    color = color.toLowerCase()
+    let rgb
+    if (rgb = hex6ToRGB(color)) return rgb
+    if (rgb = hex3ToRGB(color)) return rgb
+    if (rgb = rgbToRGB(color)) return rgb
+    return CSS_COLORS[color]
 }
 
 // Print string in 8-bit color or 24-bit color
