@@ -28,6 +28,7 @@ async function main() {
     // For 24-bit color, CSS hex-color and rgb() values are supported.
     //   Examples: - { color: '#fe10cc' } or { color: '#d2b' }
     //             - { color: 'rgb(255,147,182)' }
+    // Spaces should not be used within the color values.
     // Invalid colors values are silently ignored.
     choices = [
         'Ace Combat 7: Skies Unknown',
