@@ -26,10 +26,10 @@ async function main() {
     // For 8-bit color, refer to the lookup table at
     //   https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
     // For 24-bit color, CSS hex-color and rgb() values are supported.
-    //   Examples: - { color: '#fe10cc' } or { color: '#d2b' }
-    //             - { color: 'rgb(255,147,182)' }
+    //   Examples: - { color: '#fe10ca' }, { color: '#d2b' }
+    //             - { color: 'rgb(188,0,95)' }
     // Spaces should not be used within the color values.
-    // Invalid colors values are silently ignored.
+    // Invalid color values will be silently ignored.
     choices = [
         'Ace Combat 7: Skies Unknown',
         "Assassin's Creed Odyssey",
@@ -45,7 +45,7 @@ async function main() {
         'XCOM: Chimera Squad'
     ]
     console.log(`Which game do you want to play today? (${choices.length})`)
-    answer = await ask(choices, { color: '#d2b', maxWindow: 5, pointer: '😀' })
+    answer = await ask(choices, { color: 'rgb(188,0,95)', maxWindow: 5, pointer: '😀' })
     console.log(choices[answer])
 }
 
