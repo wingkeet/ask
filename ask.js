@@ -20,10 +20,18 @@ function hex3ToRGB(color) {
 }
 
 // Example: Convert 'rgb(7,80,255)' to { 7, 80, 255 }
-function rgbToRGB(color) {
+function rgbiToRGB(color) {
     const match = color.match(/^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/)
     if (!match) return undefined
-    const [r, g, b] = match.slice(1, 4).map(dec => Number(dec))
+    const [r, g, b] = match.slice(1, 4).map(int => Number(int))
+    return {r, g, b}
+}
+
+// Example: Convert 'rgb(0%,50%,100%)' to { 0, 128, 255 }
+function rgbpToRGB(color) {
+    const match = color.match(/^rgb\((\d{1,3})%,(\d{1,3})%,(\d{1,3})%\)$/)
+    if (!match) return undefined
+    const [r, g, b] = match.slice(1, 4).map(percent => Math.round(percent / 100 * 255))
     return {r, g, b}
 }
 
@@ -52,10 +60,20 @@ function parseColor(color) {
 
     color = color.toLowerCase()
     let rgb
-    if (rgb = hex6ToRGB(color)) return rgb
-    if (rgb = hex3ToRGB(color)) return rgb
-    if (rgb = rgbToRGB(color)) return rgb
-    return CSS_COLORS[color]
+
+    if (color.startsWith('#')) {
+        if (rgb = hex6ToRGB(color)) return rgb
+        if (rgb = hex3ToRGB(color)) return rgb
+        return undefined
+    }
+    else if (color.startsWith('rgb')) {
+        if (rgb = rgbiToRGB(color)) return rgb
+        if (rgb = rgbpToRGB(color)) return rgb
+        return undefined
+    }
+    else {
+        return CSS_COLORS[color]
+    }
 }
 
 // Print string in 8-bit color or 24-bit color
