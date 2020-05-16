@@ -154,7 +154,7 @@ const NAMED_COLORS = {
     YellowGreen             : '9ACD32',
 }
 
-// Example: 'F0F8FF' => { 0xF0, 0xF8, 0xFF }
+// Example: '#F0F8FF' => { 0xF0, 0xF8, 0xFF }
 function hex6ToRGB(color) {
     const match = color.match(/^#([A-F0-9]{2})([A-F0-9]{2})([A-F0-9]{2})$/i)
     if (!match) return undefined
@@ -162,7 +162,7 @@ function hex6ToRGB(color) {
     return {r, g, b}
 }
 
-// Example: 'F22' => { 0xFF, 0x22, 0x22 }
+// Example: '#F22' => { 0xFF, 0x22, 0x22 }
 function hex3ToRGB(color) {
     const match = color.match(/^#([A-F0-9])([A-F0-9])([A-F0-9])$/i)
     if (!match) return undefined
@@ -187,6 +187,7 @@ function rgbpToRGB(color) {
 }
 
 function getNamedColors() {
+    // Example: 'F0F8FF' => { 0xF0, 0xF8, 0xFF }
     function hex6ToRGBSafe(hex) {
         hex = parseInt(hex, 16)
         return {
