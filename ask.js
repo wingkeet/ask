@@ -30,7 +30,7 @@ function rgbToRGB(color) {
 function getNamedColors() {
     // https://javascript.info/keys-values-entries#transforming-objects
     return Object.fromEntries(
-        Object.entries(csscolors).map(([name, color]) => [name, hex6ToRGB(color)])
+        Object.entries(csscolors).map(([name, color]) => [name.toLowerCase(), hex6ToRGB(color)])
     )
 }
 
