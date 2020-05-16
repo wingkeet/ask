@@ -3,47 +3,6 @@
 const readline = require('readline')
 const csscolors = require('./css-colors')
 
-// Example: Convert 'F0F8FF' to { 0xF0, 0xF8, 0xFF }
-function hex6ToRGB(color) {
-    const match = color.match(/^#?([A-F0-9]{2})([A-F0-9]{2})([A-F0-9]{2})$/i)
-    if (!match) return undefined
-    const [r, g, b] = match.slice(1, 4).map(hex => parseInt(hex, 16))
-    return {r, g, b}
-}
-
-// Example: Convert 'F22' to { 0xFF, 0x22, 0x22 }
-function hex3ToRGB(color) {
-    const match = color.match(/^#?([A-F0-9])([A-F0-9])([A-F0-9])$/i)
-    if (!match) return undefined
-    const [r, g, b] = match.slice(1, 4).map(hex => parseInt(hex + hex, 16))
-    return {r, g, b}
-}
-
-// Example: Convert 'rgb(7,80,255)' to { 7, 80, 255 }
-function rgbiToRGB(color) {
-    const match = color.match(/^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/)
-    if (!match) return undefined
-    const [r, g, b] = match.slice(1, 4).map(int => Number(int))
-    return {r, g, b}
-}
-
-// Example: Convert 'rgb(0%,50%,100%)' to { 0, 128, 255 }
-function rgbpToRGB(color) {
-    const match = color.match(/^rgb\((\d{1,3})%,(\d{1,3})%,(\d{1,3})%\)$/)
-    if (!match) return undefined
-    const [r, g, b] = match.slice(1, 4).map(percent => Math.round(percent / 100 * 255))
-    return {r, g, b}
-}
-
-function getNamedColors() {
-    // https://javascript.info/keys-values-entries#transforming-objects
-    return Object.fromEntries(
-        Object.entries(csscolors).map(([name, color]) => [name.toLowerCase(), hex6ToRGB(color)])
-    )
-}
-
-const CSS_COLORS = getNamedColors()
-
 function hideCursor() {
     process.stderr.write('\x1b[?25l') // Hide terminal cursor
 }
@@ -57,23 +16,7 @@ function showCursor() {
 function parseColor(color) {
     if (typeof color === 'number') return color
     if (typeof color !== 'string') return undefined
-
-    color = color.toLowerCase()
-    let rgb
-
-    if (color.startsWith('#')) {
-        if (rgb = hex6ToRGB(color)) return rgb
-        if (rgb = hex3ToRGB(color)) return rgb
-        return undefined
-    }
-    else if (color.startsWith('rgb')) {
-        if (rgb = rgbiToRGB(color)) return rgb
-        if (rgb = rgbpToRGB(color)) return rgb
-        return undefined
-    }
-    else {
-        return CSS_COLORS[color]
-    }
+    return csscolors.parse(color)
 }
 
 // Print string in 8-bit color or 24-bit color
