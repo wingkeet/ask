@@ -32,6 +32,8 @@ async function main() {
     // All color values are case-insensitive.
     // Spaces should not be used within the color values.
     // Invalid color values are silently ignored.
+    // A list of CSS color names can be found at
+    //   https://www.w3schools.com/cssref/css_colors.asp
     choices = [
         'Ace Combat 7: Skies Unknown',
         "Assassin's Creed Odyssey",
