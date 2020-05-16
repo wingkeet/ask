@@ -12,7 +12,7 @@ function showCursor() {
 }
 
 // Parse color string and return RGB triplet
-// If there is any error, return 'undefined' 
+// If there is any error, return 'undefined'
 function parseColor(color) {
     if (typeof color === 'number') return color
     if (typeof color !== 'string') return undefined
