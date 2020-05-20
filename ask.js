@@ -1,7 +1,7 @@
 'use strict'
 
 const readline = require('readline')
-const csscolors = require('./css-colors')
+try { var csscolors = require('./css-colors') } catch {} // css-colors.js is optional
 
 function hideCursor() {
     process.stderr.write('\x1b[?25l') // Hide terminal cursor
@@ -16,7 +16,7 @@ function showCursor() {
 function parseColor(color) {
     if (typeof color === 'number') return color
     if (typeof color !== 'string') return undefined
-    return csscolors.parse(color)
+    return csscolors?.parse(color)
 }
 
 // Print string in 8-bit color or 24-bit color
