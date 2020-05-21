@@ -1,6 +1,6 @@
 'use strict'
 
-// The CSS color names and their values were obtained from
+// These CSS color names and their values were obtained from
 // https://www.w3schools.com/cssref/css_colors.asp
 
 const NAMED_COLORS = {
@@ -196,7 +196,7 @@ function getNamedColors() {
             b: hex & 0xff
         }
     }
-    // https://javascript.info/keys-values-entries#transforming-objects
+    // https://v8.dev/features/object-fromentries
     return Object.fromEntries(
         Object.entries(NAMED_COLORS).map(([name, hex6]) => [name.toLowerCase(), hex6ToRGBSafe(hex6)])
     )
