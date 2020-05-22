@@ -45,8 +45,8 @@ function ask(choices, options = {}) {
         }
 
         // Set default options
-        const { color: colorTemp, maxWindow = 10, pointer = '>' } = options
-        const color = parseColor(colorTemp)
+        const { maxWindow = 10, pointer = '>' } = options
+        const color = parseColor(options.color)
 
         hideCursor()
         readline.emitKeypressEvents(process.stdin)
