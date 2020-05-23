@@ -191,13 +191,13 @@ function rgbpToRGB(color) {
 function hslToRGB(color) {
     const match = color.match(/^hsl\((\d{1,3}),(\d{1,3})%,(\d{1,3})%\)$/)
     if (!match) return undefined
-    const H = match[1]
-    const S = match[2] / 100
-    const L = match[3] / 100
+    const H = match[1]       // [0..360]
+    const S = match[2] / 100 // [0..1]
+    const L = match[3] / 100 // [0..1]
     function f(n) {
         const k = (n + H / 30) % 12
         const a = S * Math.min(L, 1 - L)
-        return L - a * Math.max(-1, Math.min(k - 3, 9 - k, 1))
+        return L - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)) // [0..1]
     }
     const [r, g, b] = [f(0), f(8), f(4)].map(f => Math.round(f * 255))
     return {r, g, b}
