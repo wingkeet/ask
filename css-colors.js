@@ -182,7 +182,24 @@ function rgbiToRGB(color) {
 function rgbpToRGB(color) {
     const match = color.match(/^rgb\((\d{1,3})%,(\d{1,3})%,(\d{1,3})%\)$/)
     if (!match) return undefined
-    const [r, g, b] = match.slice(1, 4).map(percent => Math.round(percent / 100 * 255))
+    const [r, g, b] = match.slice(1, 4).map(percentage => Math.round(percentage / 100 * 255))
+    return {r, g, b}
+}
+
+// https://en.wikipedia.org/wiki/HSL_and_HSV#HSL_to_RGB_alternative
+// Example: 'hsl(0,100%,50%)' => { 255, 0, 0 }
+function hslToRGB(color) {
+    const match = color.match(/^hsl\((\d{1,3}),(\d{1,3})%,(\d{1,3})%\)$/)
+    if (!match) return undefined
+    const H = match[1]
+    const S = match[2] / 100
+    const L = match[3] / 100
+    function f(n) {
+        const k = (n + H / 30) % 12
+        const a = S * Math.min(L, 1 - L)
+        return L - a * Math.max(-1, Math.min(k - 3, 9 - k, 1))
+    }
+    const [r, g, b] = [f(0), f(8), f(4)].map(f => Math.round(f * 255))
     return {r, g, b}
 }
 
@@ -220,6 +237,10 @@ function parse(color) {
     else if (color.startsWith('rgb')) {
         if (rgb = rgbiToRGB(color)) return rgb
         if (rgb = rgbpToRGB(color)) return rgb
+        return undefined
+    }
+    else if (color.startsWith('hsl')) {
+        if (rgb = hslToRGB(color)) return rgb
         return undefined
     }
     else {
