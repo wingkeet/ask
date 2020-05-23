@@ -35,23 +35,26 @@ async function main() {
     // A list of CSS color names can be found at
     //   https://www.w3schools.com/cssref/css_colors.asp
     choices = [
-        'Ace Combat 7: Skies Unknown',
-        "Assassin's Creed Odyssey",
-        'BATTLETECH',
-        'Borderlands 3',
-        'Cyberpunk 2077',
-        'Devil May Cry 5',
-        "Empire of Sin",
-        'Kingdom Hearts',
-        'Mark of the Ninja',
-        'Oxygen Not Included',
-        'Rocket League',
-        'Sekiro: Shadows Die Twice',
-        'The Witcher 3: Wild Hunt',
-        'Wolfenstein: Youngblood',
-        'XCOM: Chimera Squad'
+        'Abkhazia',
+        'Afghanistan',
+        'Aland Islands',
+        'Albania',
+        'Algeria',
+        'American Samoa',
+        'Andorra',
+        'Angola',
+        'Anguilla',
+        'Antarctica',
+        'Antigua and Barbuda',
+        'Argentina',
+        'Armenia',
+        'Aruba',
+        'Ascension',
+        'Australia',
+        'Austria',
+        'Azerbaijan',
     ]
-    console.log(`Which game do you want to play today? (${choices.length})`)
+    console.log(`Countries that begin with 'A': (${choices.length})`)
     answer = await ask(choices, { color: 'HotPink', maxWindow: 6, pointer: '😀' })
     console.log(choices[answer])
 }
