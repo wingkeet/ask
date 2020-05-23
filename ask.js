@@ -63,10 +63,9 @@ function ask(choices, options = {}) {
         function showChoices() {
             readline.clearScreenDown(process.stdout)
             const spaces = ' '.repeat(pointer.length + 1)
-            let str = choices.slice(top, top + window).map(choice => spaces + choice)
-            str[sel] = pointer + str[sel].slice(pointer.length)
-            str = str.join('\n')
-            print(str, color)
+            const items = choices.slice(top, top + window).map(choice => spaces + choice)
+            items[sel] = pointer + items[sel].slice(pointer.length)
+            print(items.join('\n'), color)
 
             readline.cursorTo(process.stdout, 0)
             readline.moveCursor(process.stdout, 0, 1 - window)
