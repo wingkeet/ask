@@ -199,7 +199,7 @@ function hslToRGB(color) {
         const a = S * Math.min(L, 1 - L)
         return L - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)) // [0..1]
     }
-    const [r, g, b] = [f(0), f(8), f(4)].map(f => Math.round(f * 255))
+    const [r, g, b] = [f(0), f(8), f(4)].map(v => Math.round(v * 255))
     return {r, g, b}
 }
 
@@ -225,7 +225,6 @@ const _NAMED_COLORS = getNamedColors()
 // If there is any error, return 'undefined'
 function parse(color) {
     if (typeof color !== 'string') return undefined
-
     color = color.toLowerCase()
     let rgb
 
