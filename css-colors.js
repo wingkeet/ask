@@ -191,7 +191,7 @@ function rgbpToRGB(color) {
 function hslToRGB(color) {
     const match = color.match(/^hsl\((-?\d{1,3}),(\d{1,3})%,(\d{1,3})%\)$/)
     if (!match) return undefined
-    const angle = (((match[1] % 360) + 360) % 360) // normalize to [0,360)
+    const angle = ((match[1] % 360) + 360) % 360 // normalize angle to [0,360)
     const H = angle / 360    // range [0,1)
     const S = match[2] / 100 // range [0,1]
     const L = match[3] / 100 // range [0,1]
