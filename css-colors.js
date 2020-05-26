@@ -186,20 +186,28 @@ function rgbpToRGB(color) {
     return {r, g, b}
 }
 
-// https://en.wikipedia.org/wiki/HSL_and_HSV#HSL_to_RGB_alternative
+// https://drafts.csswg.org/css-color-3/#hsl-color
 // Example: 'hsl(0,100%,50%)' => { 255, 0, 0 }
 function hslToRGB(color) {
-    const match = color.match(/^hsl\((\d{1,3}),(\d{1,3})%,(\d{1,3})%\)$/)
+    const match = color.match(/^hsl\((-?\d{1,3}),(\d{1,3})%,(\d{1,3})%\)$/)
     if (!match) return undefined
-    const H = match[1]       // [0..360]
-    const S = match[2] / 100 // [0..1]
-    const L = match[3] / 100 // [0..1]
-    function f(n) {
-        const k = (n + H / 30) % 12
-        const a = S * Math.min(L, 1 - L)
-        return L - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)) // [0..1]
+    const angle = (((match[1] % 360) + 360) % 360) // normalize to [0,360)
+    const H = angle / 360    // range [0,1)
+    const S = match[2] / 100 // range [0,1]
+    const L = match[3] / 100 // range [0,1]
+    function hueToRGB(h) {
+        if (h < 0) h++
+        if (h > 1) h--
+        if (h * 6 < 1) return m1 + (m2 - m1) * h * 6
+        if (h * 2 < 1) return m2
+        if (h * 3 < 2) return m1 + (m2 - m1) * (2 / 3 - h) * 6
+        return m1
     }
-    const [r, g, b] = [f(0), f(8), f(4)].map(v => Math.round(v * 255))
+    const m2 = L <= 0.5 ? L * (S + 1) : L + S - L * S
+    const m1 = L * 2 - m2
+    const r = Math.round(hueToRGB(H + 1 / 3) * 255)
+    const g = Math.round(hueToRGB(H) * 255)
+    const b = Math.round(hueToRGB(H - 1 / 3) * 255)
     return {r, g, b}
 }
 
