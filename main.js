@@ -25,10 +25,11 @@ async function main() {
     //   - a String (24-bit RGB color; see below for details)
     // For 8-bit color, refer to the lookup table at
     //   https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
-    // For 24-bit color, CSS named-colors, hex-colors and rgb-colors are supported.
+    // For 24-bit color, CSS named-colors, hex-colors, rgb-colors and hsl-colors are supported.
     //   Examples: - { color: 'CornflowerBlue' }
     //             - { color: '#fe10ca' }, { color: '#d2b' }
     //             - { color: 'rgb(188,0,95)' }, { color: 'rgb(0%,50%,100%)' }
+    //             - { color: 'hsl(0,100%,50%)' }
     // All color values are case-insensitive.
     // Spaces should not be used within the color values.
     // Invalid color values are silently ignored.
