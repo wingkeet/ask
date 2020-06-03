@@ -64,7 +64,7 @@ Examples are shown below:
 - `{ color: 'rgb(188,0,95)' }`, `{ color: 'rgb(0%,50%,100%)' }`
 - `{ color: 'hsl(0,100%,50%)' }`
 
-Below are a list of usage notes for 24-bit color values:
+Below are a list of usage notes for 24-bit color string values:
 - All color values are case-insensitive.
 - Spaces should not be used within the color values.
 - Invalid color values are silently ignored.
