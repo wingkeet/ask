@@ -49,6 +49,8 @@ async function main() {
 main()
 ```
 
+![](images/ask.png)
+
 The `ask` function can also be called without passing in the `options` argument.
 Type `npm start` or `node main.js` on the command line for a simple demo.
 
