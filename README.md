@@ -5,7 +5,7 @@ Simple Node.js CLI library to display a list of scrollable choices and ask user 
 Ask is a Node.js module that offers an easy-to-use API to display a list of scrollable choices.
 The end-user navigates the choices with the up arrow and down arrow keys, and presses the Enter
 key for selection. Configurable options are shown below:
-- 8-bit and 24-bit text terminal colors using ANSI escape sequences.
+- 8-bit and 24-bit text terminal colors.
 - Number of rows in the scrollable window.
 - Selection pointer can be specified with a UTF-8 string.
 
@@ -52,7 +52,8 @@ The `ask` function can also be called without passing in the `options` argument.
 Type `npm start` or `node main.js` on the command line for a simple demo.
 
 ### Text Terminal Color Support
-Colors may be specified using:
+Internally, text terminal colors are displayed using ANSI escape codes. However, the `ask` function
+hides all the gory details from the developer and therefore colors may be specified using:
 - A `number` (8-bit color; e.g. `{ color: 6 }` for cyan), or
 - A `string` (24-bit RGB color; see below for details)
 
