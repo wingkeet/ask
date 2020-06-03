@@ -10,11 +10,11 @@ key for selection. Configurable options are shown below:
 - Selection pointer can be specified with a UTF-8 string.
 
 ### Prerequisites
-- The file `ask.js` requires Node.js >= 14.0.0 due to usage of the optional chaining operator (?.) in ES2020.
+- The file `ask.js` requires Node.js >= 14.0.0 due to usage of the ES2020 optional chaining operator (?.).
 - The file `ask.js` has zero external dependencies.
 
 ### Getting Started
-Call the `ask` function with an array of choices followed by an `options` object.
+Call the `ask` function with an array of choices followed by an `options` object:
 ```
 const ask = require('./ask')
 
@@ -54,9 +54,10 @@ Type `npm start` or `node main.js` on the command line for a simple demo.
 ### Text Terminal Color Support
 Text terminal colors are displayed using
 [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code) that were introduced in the 1970s.
-However, the `ask` function hides all the gory details from the developer and hence colors may be specified using:
-- A `number` (8-bit indexed color; e.g. `{ color: 6 }` for cyan), or
-- A `string` (24-bit RGB color; see below for details)
+However, the `ask` function hides all the details from the developer and hence colors may be
+specified using:
+- A `number` type (8-bit indexed color; e.g. `{ color: 6 }` for cyan), or
+- A `string` type (24-bit RGB color; see below for details)
 
 For 8-bit color, refer to the [256-color lookup table](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 on Wikipedia.
@@ -75,7 +76,7 @@ Below are a list of usage notes for 24-bit color string values:
 - A list of [CSS color names](https://www.w3schools.com/cssref/css_colors.asp) can be found on w3schools.com.
 
 The file `css-colors.js` must be present if you want 24-bit color support. That file may be removed if
-you can live with 8-bit color support or whatever color your text terminal was already set up to display.
+you are fine with 8-bit color or whatever color your text terminal was already set up to display.
 
 ### Authors
 * **Steve Leong** - *Initial work*
