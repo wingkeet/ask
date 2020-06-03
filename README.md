@@ -72,8 +72,8 @@ Below are a list of usage notes for 24-bit color string values:
 - Invalid color values are silently ignored.
 - A list of [CSS color names](https://www.w3schools.com/cssref/css_colors.asp) can be found on w3schools.com.
 
-The file `css-colors.js` must be present if you want 24-bit color support. That file may be removed
-if you can live with 8-bit color support or whatever color your text terminal is already set to.
+The file `css-colors.js` must be present if you want 24-bit color support. That file may be removed if
+you can live with 8-bit color support or whatever color your text terminal was already set up to display.
 
 ### Authors
 * **Steve Leong** - *Initial work*
