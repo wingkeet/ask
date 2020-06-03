@@ -59,8 +59,8 @@ Colors may be specified using:
 For 8-bit color, refer to the [256-color lookup table](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 on Wikipedia.
 
-For 24-bit color, CSS **named-colors**, **hex-colors**, **rgb-colors** and **hsl-colors** are supported.
-Examples are shown below:
+For 24-bit color, CSS **named-colors**, **hex-colors**, **rgb-colors** and **hsl-colors** are supported
+via the file `css-colors.js`. Examples are shown below:
 - `{ color: 'CornflowerBlue' }`
 - `{ color: '#fe10ca' }`, `{ color: '#d2b' }`
 - `{ color: 'rgb(188,0,95)' }`, `{ color: 'rgb(0%,50%,100%)' }`
@@ -72,8 +72,8 @@ Below are a list of usage notes for 24-bit color string values:
 - Invalid color values are silently ignored.
 - A list of [CSS color names](https://www.w3schools.com/cssref/css_colors.asp) can be found on w3schools.com.
 
-The file `css-colors.js` must be present if you want 24-bit color support. The file `css-colors.js` may be
-removed if you can live with 8-bit color support or whatever color your text terminal is already set to.
+The file `css-colors.js` must be present if you want 24-bit color support. That file may be removed
+if you can live with 8-bit color support or whatever color your text terminal is already set to.
 
 ### Authors
 * **Steve Leong** - *Initial work*
