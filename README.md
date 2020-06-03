@@ -50,7 +50,7 @@ main()
 The `ask` function can also be called without passing in the `options` argument.
 
 ### Additional Notes
-- Type `node main.js` on the command line for a simple demo.
+- Type `npm start` or `node main.js` on the command line for a simple demo.
 
 ### Authors
 * **Steve Leong** - *Initial work*
