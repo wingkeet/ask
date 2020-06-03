@@ -10,7 +10,7 @@ key for selection. Configurable options are shown below:
 - Selection pointer can be specified with a UTF-8 string.
 
 ### Prerequisites
-- The file `ask.js` requires Node.js >= 14.0.0 due to usage of the optional chaining operator.
+- The file `ask.js` requires Node.js >= 14.0.0 due to usage of the optional chaining operator in ES2020.
 - The file `ask.js` has zero external dependencies.
 
 ### Getting Started
