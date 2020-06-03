@@ -14,7 +14,7 @@ key for selection. Configurable options are shown below:
 - The file `ask.js` has zero external dependencies.
 
 ### Getting Started
-Call the `ask` function with an array of choices followed by an `options` argument.
+Call the `ask` function with an array of choices followed by an `options` object.
 ```
 const ask = require('./ask')
 
