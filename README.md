@@ -51,7 +51,7 @@ The `ask` function can also be called without passing in the `options` argument.
 
 ### Text Terminal Color Support
 Colors may be specified using:
-- a Number (8-bit color; e.g. { color: 6 } for cyan), or
+- a Number (8-bit color; e.g. `{ color: 6 }` for cyan), or
 - a String (24-bit RGB color; see below for details)
 
 For 8-bit color, refer to the [256-color lookup table](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
@@ -64,6 +64,7 @@ Examples are shown below:
 - `{ color: 'rgb(188,0,95)' }, { color: 'rgb(0%,50%,100%)' }`
 - `{ color: 'hsl(0,100%,50%)' }`
 
+Below are a list of usage notes for 24-bit color values:
 - All color values are case-insensitive.
 - Spaces should not be used within the color values.
 - Invalid color values are silently ignored.
