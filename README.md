@@ -49,6 +49,7 @@ main()
 ```
 
 The `ask` function can also be called without passing in the `options` argument.
+Type `npm start` or `node main.js` on the command line for a simple demo.
 
 ### Text Terminal Color Support
 Colors may be specified using:
@@ -73,9 +74,6 @@ Below are a list of usage notes for 24-bit color string values:
 
 The file `css-colors.js` must be present if you want 24-bit color support. The file `css-colors.js` may be
 removed if you can live with 8-bit color support or whatever color your text terminal is already set to.
-
-### Additional Notes
-- Type `npm start` or `node main.js` on the command line for a simple demo.
 
 ### Authors
 * **Steve Leong** - *Initial work*
