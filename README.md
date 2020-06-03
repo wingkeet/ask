@@ -53,8 +53,8 @@ Type `npm start` or `node main.js` on the command line for a simple demo.
 
 ### Text Terminal Color Support
 Colors may be specified using:
-- a Number (8-bit color; e.g. `{ color: 6 }` for cyan), or
-- a String (24-bit RGB color; see below for details)
+- A Number (8-bit color; e.g. `{ color: 6 }` for cyan), or
+- A String (24-bit RGB color; see below for details)
 
 For 8-bit color, refer to the [256-color lookup table](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 on Wikipedia.
