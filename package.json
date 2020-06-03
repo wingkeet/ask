@@ -1,7 +1,7 @@
 {
   "name": "ask",
   "version": "1.0.0",
-  "description": "Simple Node.js library to display choices and ask for selection",
+  "description": "Simple Node.js CLI library to display a list of scrollable choices and ask user for selection",
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
