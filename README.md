@@ -52,8 +52,9 @@ The `ask` function can also be called without passing in the `options` argument.
 Type `npm start` or `node main.js` on the command line for a simple demo.
 
 ### Text Terminal Color Support
-Internally, text terminal colors are displayed using ANSI escape codes. However, the `ask` function
-hides all the gory details from the developer and therefore colors may be specified using:
+Text terminal colors are displayed using
+[ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code) that were introduced in the 1970s.
+However, the `ask` function hides all the gory details from the developer and hence colors may be specified using:
 - A `number` (8-bit color; e.g. `{ color: 6 }` for cyan), or
 - A `string` (24-bit RGB color; see below for details)
 
