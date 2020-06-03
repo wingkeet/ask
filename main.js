@@ -40,7 +40,7 @@ async function main() {
         'Austria',
         'Azerbaijan',
     ]
-    console.log(`Countries that begin with 'A': (${choices.length})`)
+    console.log(`Where do you come from? (${choices.length})`)
     answer = await ask(choices, { color: 'HotPink', maxWindow: 6, pointer: '😀' })
     console.log(choices[answer])
 }
