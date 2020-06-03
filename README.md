@@ -58,7 +58,7 @@ Colors may be specified using:
 For 8-bit color, refer to the [256-color lookup table](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 on Wikipedia.
 
-For 24-bit color, CSS named-colors, hex-colors, rgb-colors and hsl-colors are supported.
+For 24-bit color, CSS **named-colors**, **hex-colors**, **rgb-colors** and **hsl-colors** are supported.
 Examples are shown below:
 - `{ color: 'CornflowerBlue' }`
 - `{ color: '#fe10ca' }`, `{ color: '#d2b' }`
