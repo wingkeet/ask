@@ -60,15 +60,15 @@ on Wikipedia.
 For 24-bit color, CSS named-colors, hex-colors, rgb-colors and hsl-colors are supported.
 Examples are shown below:
 - `{ color: 'CornflowerBlue' }`
-- `{ color: '#fe10ca' }, { color: '#d2b' }`
-- `{ color: 'rgb(188,0,95)' }, { color: 'rgb(0%,50%,100%)' }`
+- `{ color: '#fe10ca' }`, `{ color: '#d2b' }`
+- `{ color: 'rgb(188,0,95)' }`, `{ color: 'rgb(0%,50%,100%)' }`
 - `{ color: 'hsl(0,100%,50%)' }`
 
 Below are a list of usage notes for 24-bit color values:
 - All color values are case-insensitive.
 - Spaces should not be used within the color values.
 - Invalid color values are silently ignored.
-- A list of CSS color names can be found at https://www.w3schools.com/cssref/css_colors.asp
+- A list of [CSS color names](https://www.w3schools.com/cssref/css_colors.asp) can be found on w3schools.com.
 
 ### Additional Notes
 - Type `npm start` or `node main.js` on the command line for a simple demo.
