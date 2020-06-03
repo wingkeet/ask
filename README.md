@@ -49,6 +49,7 @@ async function main() {
 main()
 ```
 
+Running the above program produces the following output:
 ![](images/ask.png)
 
 The `ask` function can also be called without passing in the `options` argument.
