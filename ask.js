@@ -13,7 +13,7 @@ function showCursor() {
 
 // Parse color string and return RGB triplet
 // If there is any error, return 'undefined'
-// The optional chaining operator (?.) requires Node.js >= 14.0.0
+// The ES2020 optional chaining operator (?.) requires Node.js >= 14.0.0
 // https://v8.dev/features/optional-chaining
 function parseColor(color) {
     if (typeof color === 'number') return color
