@@ -16,6 +16,7 @@ key for selection. Configurable options are shown below:
 ### Getting Started
 Call the `ask` function with an array of choices followed by an `options` object:
 ```
+'use strict'
 const ask = require('./ask')
 
 async function main() {
