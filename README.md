@@ -3,7 +3,7 @@ Simple Node.js CLI library to display a list of scrollable choices and ask user 
 
 ### Introduction
 Ask is a Node.js module that offers an easy-to-use API to display a list of scrollable choices.
-The end user navigates the choices with the up arrow and down arrow keys, and presses the Enter
+The end user navigates the choices with the up arrow and down arrow keys and presses the Enter
 key for selection. Configurable options are shown below:
 - 8-bit and 24-bit text terminal colors.
 - Number of rows in the scrollable window.
