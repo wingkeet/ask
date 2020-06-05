@@ -113,6 +113,7 @@ function ask(choices, options = {}) {
                     rl.close() // allows Node.js app to terminate properly
                     showCursor()
                     resolve(key.name === 'return' ? top + sel : -1)
+                    break
                 default:
                     break
             }
