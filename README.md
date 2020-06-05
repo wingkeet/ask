@@ -53,7 +53,7 @@ main()
 
 Running the above program produces the output shown below. Use the up arrow and down arrow keys
 to move the selection pointer. Press Enter to confirm selection, Q to continue program execution
-without selection, and CTRL-C to quit the program immediately.
+without selection, and CTRL-C to exit the program immediately.
 
 ![Screenshot](images/ask.png)
 
