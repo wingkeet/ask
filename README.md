@@ -14,7 +14,9 @@ key for selection. Configurable options are shown below:
 - The file `ask.js` has zero external dependencies.
 
 ### Getting Started
+Here is a complete working program to demonstrate how to use the `ask` module.
 Call the `ask` function with an array of strings followed by an `options` object:
+
 ```
 'use strict'
 const ask = require('./ask')
