@@ -81,6 +81,7 @@ via the file `css-colors.js`. Examples are shown below:
 Below are a list of usage notes for 24-bit color string values:
 - All color values are case-insensitive.
 - Spaces should not be used within the color values.
+- Alpha values are not supported.
 - Invalid color values are silently ignored.
 - A list of [CSS color names](https://www.w3schools.com/cssref/css_colors.asp) can be found on w3schools.com.
 
