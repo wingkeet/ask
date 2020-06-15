@@ -15,7 +15,9 @@ key for selection. Configurable options are shown below:
 
 ### Getting Started
 Here is a complete working program to demonstrate how to use the `ask` module.
-Call the `ask` function with an array of strings followed by an `options` object:
+Call the `ask` function with an array of strings followed by an `options` object.
+The `ask` function returns a promise that resolves to an integer indicating
+the zero-based answer.
 
 ```
 'use strict'
