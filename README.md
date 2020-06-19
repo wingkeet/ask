@@ -60,7 +60,7 @@ without selection, and CTRL-C to terminate the program immediately.
 ![Screenshot](images/ask.png)
 
 The `ask` function can also be called without passing in the `options` argument.
-Type `npm start` or `node main.js` on the command line for a simple demo.
+Type `npm start` on the command line for a simple demo.
 
 ### Text Terminal Color Support
 Text terminal colors are displayed using
