@@ -6,7 +6,7 @@ Ask is a Node.js module that offers an easy-to-use API to display a list of scro
 The end user navigates the choices with the up arrow and down arrow keys and presses the Enter
 key for selection. Configurable options are shown below:
 - 8-bit and 24-bit text terminal colors.
-- Number of rows in the scrollable window.
+- Number of visible rows in the scrollable window.
 - Selection pointer can be specified with a UTF-8 string.
 
 ### Prerequisites
