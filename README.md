@@ -54,8 +54,8 @@ main()
 ```
 
 Running the above program produces the output shown below. Note that we specified
-`maxWindow: 6` but there 18 choices, so scrolling is possible. Use the up arrow and
-down arrow keys to move the selection pointer. Press Enter to confirm selection,
+`maxWindow: 6` but there are 18 choices, so scrolling is possible. Use the up arrow
+and down arrow keys to move the selection pointer. Press Enter to confirm selection,
 and CTRL-C to terminate the program immediately.
 
 ![Screenshot](images/ask.png)
