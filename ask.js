@@ -104,7 +104,6 @@ function ask(choices, options = {}) {
                     }
                     break
                 case 'return':
-                case 'q':
                     readline.clearScreenDown(process.stdout)
                     process.stdin.off('keypress', keyPressCallback)
                     if (process.stdin.isTTY) {
@@ -112,7 +111,7 @@ function ask(choices, options = {}) {
                     }
                     rl.close() // allows Node.js app to terminate properly
                     showCursor()
-                    resolve(key.name === 'return' ? top + sel : -1)
+                    resolve(top + sel)
                     break
                 default:
                     break
