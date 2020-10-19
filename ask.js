@@ -24,16 +24,16 @@ function parseColor(color) {
 // Print string in 8-bit color or 24-bit color
 function print(str, color) {
     switch (typeof color) {
-        case 'number': // 8-bit color
-            process.stdout.write(`\x1b[38;5;${color}m${str}\x1b[0m`)
-            break
-        case 'object': // 24-bit color
-            const {r, g, b} = color
-            process.stdout.write(`\x1b[38;2;${r};${g};${b}m${str}\x1b[0m`)
-            break
-        default:
-            process.stdout.write(str)
-            break
+    case 'number': // 8-bit color
+        process.stdout.write(`\x1b[38;5;${color}m${str}\x1b[0m`)
+        break
+    case 'object': // 24-bit color
+        const {r, g, b} = color
+        process.stdout.write(`\x1b[38;2;${r};${g};${b}m${str}\x1b[0m`)
+        break
+    default:
+        process.stdout.write(str)
+        break
     }
 }
 
@@ -79,42 +79,42 @@ function ask(choices, options = {}) {
                 process.exit()
             }
             switch (key.name) {
-                case 'up':
-                    if (sel > 0) {
-                        // No scrolling, just move the selection up
-                        sel--
-                        showChoices()
-                    }
-                    else if (top > 0) {
-                        // Needs scrolling
-                        top--
-                        showChoices()
-                    }
-                    break
-                case 'down':
-                    if (sel < window - 1) {
-                        // No scrolling, just move the selection down
-                        sel++
-                        showChoices()
-                    }
-                    else if (top + window < choices.length) {
-                        // Needs scrolling
-                        top++
-                        showChoices()
-                    }
-                    break
-                case 'return':
-                    readline.clearScreenDown(process.stdout)
-                    process.stdin.off('keypress', keyPressCallback)
-                    if (process.stdin.isTTY) {
-                        process.stdin.setRawMode(false)
-                    }
-                    rl.close() // allows Node.js app to terminate properly
-                    showCursor()
-                    resolve(top + sel)
-                    break
-                default:
-                    break
+            case 'up':
+                if (sel > 0) {
+                    // No scrolling, just move the selection up
+                    sel--
+                    showChoices()
+                }
+                else if (top > 0) {
+                    // Needs scrolling
+                    top--
+                    showChoices()
+                }
+                break
+            case 'down':
+                if (sel < window - 1) {
+                    // No scrolling, just move the selection down
+                    sel++
+                    showChoices()
+                }
+                else if (top + window < choices.length) {
+                    // Needs scrolling
+                    top++
+                    showChoices()
+                }
+                break
+            case 'return':
+                readline.clearScreenDown(process.stdout)
+                process.stdin.off('keypress', keyPressCallback)
+                if (process.stdin.isTTY) {
+                    process.stdin.setRawMode(false)
+                }
+                rl.close() // allows Node.js app to terminate properly
+                showCursor()
+                resolve(top + sel)
+                break
+            default:
+                break
             }
         }
 
