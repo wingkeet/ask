@@ -68,8 +68,8 @@ Text terminal colors are displayed using
 [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code) that were introduced in the 1970s.
 However, the `ask` function hides all the details from the developer and hence colors may be
 specified using:
-- A `number` type (8-bit indexed color; e.g. `{ color: 6 }` for cyan), or
-- A `string` type (24-bit RGB color; see below for details)
+- A `Number` type (8-bit indexed color; e.g. `{ color: 6 }` for cyan), or
+- A `String` type (24-bit RGB color; see below for details)
 
 For 8-bit color, refer to the [256-color lookup table](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 on Wikipedia.
